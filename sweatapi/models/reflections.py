@@ -1,7 +1,7 @@
 from django.db import models
 from .workout import Workout
 
-class Reflection(models.Model):  # Renamed to singular for consistency
+class Reflection(models.Model):
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
     mood = models.IntegerField()
     notes = models.TextField()
