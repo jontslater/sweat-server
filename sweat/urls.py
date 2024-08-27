@@ -20,9 +20,13 @@ from rest_framework import routers
 
 from sweatapi.views.auth import check_user, register_user
 from sweatapi.views.user import UserView
+from sweatapi.views.profile_views import ProfileViewSet
+from sweatapi.views.reflections_views import ReflectionViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'user')
+router.register(r'profiles', ProfileViewSet, 'profile')
+router.register(r'reflections', ReflectionViewSet, 'reflection')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
