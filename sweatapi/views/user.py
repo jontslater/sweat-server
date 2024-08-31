@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from sweatapi.models import User
+from sweatapi.models import User, Profile
 
 class UserView(ViewSet):
     def retrieve(self, request, pk):
@@ -49,4 +49,8 @@ class UserView(ViewSet):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'uid']             
+        fields = ['id', 'username', 'email', 'uid']
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['id', 'user', 'age', 'gender', 'weight', 'height', 'goal']                   

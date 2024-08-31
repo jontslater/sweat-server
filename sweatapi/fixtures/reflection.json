@@ -1,0 +1,23 @@
+[
+  {
+      "model": "sweatapi.reflection",
+      "pk": 1,
+      "fields": {
+          "workout": 1,
+          "mood": 5,
+          "notes": "Great session, felt energized!",
+          "created_on": "2024-08-31"
+      }
+  },
+  {
+      "model": "sweatapi.reflection",
+      "pk": 2,
+      "fields": {
+          "workout": 1,
+          "mood": 1,
+          "notes": "Tough workout, but satisfying.",
+          "created_on": "2024-08-31"
+
+      }
+  }
+]

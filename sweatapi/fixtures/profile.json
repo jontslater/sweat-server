@@ -1,0 +1,14 @@
+[
+  {
+      "model": "sweatapi.profile",
+      "pk": 1,
+      "fields": {
+          "user": 1,
+          "age": 25,
+          "gender": "Male",
+          "weight": 70.5,
+          "height": 175.0,
+          "goal": "Build Muscle"
+      }
+  }
+]

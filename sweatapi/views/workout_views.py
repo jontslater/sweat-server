@@ -23,7 +23,7 @@ class WorkoutViewSet(ViewSet):
 
     def list(self, request):
         """Handle GET requests for all Workouts"""
-        workouts = Workout.objects.all()
+        workouts = self.get_queryset()
         serializer = WorkoutSerializer(workouts, many=True)
         return Response(serializer.data)
 
@@ -47,6 +47,13 @@ class WorkoutViewSet(ViewSet):
             return Response({'message': 'Workout deleted'}, status=status.HTTP_204_NO_CONTENT)
         except Workout.DoesNotExist:
             return Response({'message': 'Workout not found'}, status=status.HTTP_404_NOT_FOUND)
+          
+    def get_queryset(self):
+        user_id = self.request.query_params.get('user', None)
+        if user_id:
+            return Workout.objects.filter(user_id=user_id)
+        return Workout.objects.all()
+      
 
 class WorkoutTypeSerializer(serializers.ModelSerializer):
     class Meta:

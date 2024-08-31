@@ -1,0 +1,22 @@
+[
+  {
+      "model": "sweatapi.workout",
+      "pk": 1,
+      "fields": {
+          "user": 1,
+          "date": "2024-08-30",
+          "duration": "01:00:00",
+          "intensity": 8
+      }
+  },
+  {
+      "model": "sweatapi.workout",
+      "pk": 2,
+      "fields": {
+          "user": 1,
+          "date": "2024-08-31",
+          "duration": "00:45:00",
+          "intensity": 6
+      }
+  }
+]
