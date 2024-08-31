@@ -1,0 +1,18 @@
+[
+  {
+      "model": "sweatapi.workouttype",
+      "pk": 1,
+      "fields": {
+          "workout": 1,
+          "type": 1
+      }
+  },
+  {
+      "model": "sweatapi.workouttype",
+      "pk": 2,
+      "fields": {
+          "workout": 1,
+          "type": 2
+      }
+  }
+]

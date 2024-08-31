@@ -1,0 +1,16 @@
+[
+  {
+      "model": "sweatapi.type",
+      "pk": 1,
+      "fields": {
+          "type_name": "Cardio"
+      }
+  },
+  {
+      "model": "sweatapi.type",
+      "pk": 2,
+      "fields": {
+          "type_name": "Strength Training"
+      }
+  }
+]
