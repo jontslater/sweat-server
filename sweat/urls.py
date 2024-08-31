@@ -23,12 +23,14 @@ from sweatapi.views.user import UserView
 from sweatapi.views.profile_views import ProfileViewSet
 from sweatapi.views.reflections_views import ReflectionViewSet
 from sweatapi.views.type_views import TypeViewSet
+from sweatapi.views.workout_type_views import WorkoutTypeViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'user')
 router.register(r'profiles', ProfileViewSet, 'profile')
 router.register(r'reflections', ReflectionViewSet, 'reflection')
 router.register(r'types', TypeViewSet, 'type')
+router.register(r'workouttypes', WorkoutTypeViewSet, 'workouttype')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
