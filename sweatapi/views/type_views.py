@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from sweatapi.models import Type
+from sweatapi.models import Type, WorkoutType
 
 class TypeViewSet(ViewSet):
     def create(self, request):
@@ -52,3 +52,7 @@ class TypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Type
         fields = ['id', 'type_name']
+class WorkoutTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkoutType
+        fields = ['id', 'workout', 'type','type_id']

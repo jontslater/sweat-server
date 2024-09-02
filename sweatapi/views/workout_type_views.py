@@ -39,6 +39,6 @@ class WorkoutTypeViewSet(ViewSet):
 class WorkoutTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkoutType
-        fields = ['id', 'workout', 'type']
+        fields = ['id', 'workout', 'type','type_id']
         depth = 2
             
