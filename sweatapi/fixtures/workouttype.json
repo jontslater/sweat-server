@@ -9,7 +9,7 @@
   },
   {
       "model": "sweatapi.workouttype",
-      "pk": 2,
+      "pk": 1,
       "fields": {
           "workout": 1,
           "type": 2

@@ -12,6 +12,7 @@ class WorkoutViewSet(ViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
     def retrieve(self, request, pk=None):
         """Handle GET requests for a single Workout"""
         try:
@@ -31,13 +32,16 @@ class WorkoutViewSet(ViewSet):
         """Handle PUT requests to update a Workout"""
         try:
             workout = Workout.objects.get(pk=pk)
-            serializer = WorkoutSerializer(workout, data=request.data, partial=True)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Workout.DoesNotExist:
             return Response({'message': 'Workout not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        # Update the serializer with incoming data
+        serializer = WorkoutSerializer(workout, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk=None):
         """Handle DELETE requests to delete a Workout"""
@@ -58,8 +62,8 @@ class WorkoutViewSet(ViewSet):
 class WorkoutTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkoutType
-        fields = ['id', 'workout', 'type']
-        # depth = 2
+        fields = ['id', 'workout', 'type','type_id']
+        depth = 2
 
 class ReflectionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -67,10 +71,11 @@ class ReflectionSerializer(serializers.ModelSerializer):
         fields = ['id', 'workout', 'mood', 'notes', 'created_on']
 
 class WorkoutSerializer(serializers.ModelSerializer):
-    workout_types = WorkoutTypeSerializer(source='workouttype_set', many=True, read_only=True)
+    workout_type = serializers.PrimaryKeyRelatedField(queryset=WorkoutType.objects.all())
     reflections = ReflectionSerializer(source='reflection_set', many=True, read_only=True)
 
     class Meta:
         model = Workout
-        fields = ['id', 'user', 'date', 'duration', 'intensity', 'workout_types', 'reflections']
+        fields = ['id', 'user', 'date', 'duration', 'intensity', 'workout_type', 'reflections']
+
     
