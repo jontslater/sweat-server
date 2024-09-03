@@ -1,9 +1,27 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from sweatapi.models import WorkoutType
+from sweatapi.models import WorkoutType, Type,Workout
+
+class TypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Type
+        fields = ['id', 'type_name'] 
+        depth = 2          
+class WorkoutTypeSerializer(serializers.ModelSerializer):
+    workout = serializers.PrimaryKeyRelatedField(queryset=Workout.objects.all())
+    type_id = serializers.PrimaryKeyRelatedField(queryset=Type.objects.all())
+    type = serializers.StringRelatedField()  # Adjust this if needed
+
+    class Meta:
+        model = WorkoutType
+        fields = ['id', 'workout', 'type_id', 'type']
+        depth = 2
 
 class WorkoutTypeViewSet(ViewSet):
+    queryset = WorkoutType.objects.all()
+    serializer_class = WorkoutTypeSerializer
+    
     def create(self, request):
         """Handle POST requests to create a new WorkoutType"""
         serializer = WorkoutTypeSerializer(data=request.data)
@@ -35,10 +53,3 @@ class WorkoutTypeViewSet(ViewSet):
             return Response({'message': 'WorkoutType deleted'}, status=status.HTTP_204_NO_CONTENT)
         except WorkoutType.DoesNotExist:
             return Response({'message': 'WorkoutType not found'}, status=status.HTTP_404_NOT_FOUND)
-
-class WorkoutTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = WorkoutType
-        fields = ['id', 'workout', 'type','type_id']
-        depth = 2
-            

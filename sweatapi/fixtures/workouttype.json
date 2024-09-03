@@ -3,7 +3,7 @@
       "model": "sweatapi.workouttype",
       "pk": 1,
       "fields": {
-          "workout": 1,
+          "workout": 2,
           "type": 1
       }
   },
@@ -11,7 +11,7 @@
       "model": "sweatapi.workouttype",
       "pk": 1,
       "fields": {
-          "workout": 1,
+          "workout": 2,
           "type": 2
       }
   }

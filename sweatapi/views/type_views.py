@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from sweatapi.models import Type, WorkoutType
+from sweatapi.models import Type, WorkoutType, Workout
 
 class TypeViewSet(ViewSet):
     def create(self, request):
@@ -31,13 +31,15 @@ class TypeViewSet(ViewSet):
         """Handle PUT requests to update a Type"""
         try:
             type_instance = Type.objects.get(pk=pk)
+            # This will allow partial updates with the PUT method
             serializer = TypeSerializer(type_instance, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializer.data)
+                return Response(serializer.data, status=status.HTTP_200_OK)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Type.DoesNotExist:
             return Response({'message': 'Type not found'}, status=status.HTTP_404_NOT_FOUND)
+
 
     def destroy(self, request, pk=None):
         """Handle DELETE requests to delete a Type"""
@@ -56,3 +58,10 @@ class WorkoutTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkoutType
         fields = ['id', 'workout', 'type','type_id']
+
+class WorkoutSerializer(serializers.ModelSerializer):
+    workout_type = serializers.PrimaryKeyRelatedField(queryset=WorkoutType.objects.all())
+
+    class Meta:
+        model = Workout
+        fields = ['id', 'user', 'date', 'duration', 'intensity', 'workout_type', 'reflections']
