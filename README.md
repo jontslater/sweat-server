@@ -16,6 +16,7 @@ API Endpoints:
 /workouts: manages the creation, retrieval, updating, and deletion of individual workouts.
 ## Postman Documentation
 You can view the Postman documentation for this project [here](https://documenter.getpostman.com/view/29817482/2sAXjNYAxM).
+[Watch the Loom API Video](https://www.loom.com/share/dfa84b56664b4fadb6a538887bd3dd0e?sid=e114e5a8-7b00-4c0e-aecc-ace46012bf49)
 
 
 Key Features:
